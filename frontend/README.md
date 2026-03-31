@@ -1,4 +1,21 @@
-# React + TypeScript + Vite
+# Traffic Pulse Frontend
+
+This is the frontend portion of the Traffic Pulse application, built with React, TypeScript, and Vite.
+
+## Running the project locally
+
+To start the frontend development server, run the following commands in this directory:
+
+```bash
+npm install
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`. Make sure the backend server is also running for data fetching to work correctly.
+
+---
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

@@ -20,11 +20,10 @@ export default function GlobeMap() {
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/dark-v11', // Dark map is great for traffic
       center: [-74.0060, 40.7128], // Default to NYC
       zoom: 10,
-      pitch: 45,
-      projection: 'globe' // Render as a 3D globe!
+      pitch: 45
+      // Removed projection: 'globe' to see if it helps
     });
 
     // Add cinematic atmosphere
