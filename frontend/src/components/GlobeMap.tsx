@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useTrafficStore } from '../store/useTrafficStore';
@@ -83,10 +83,9 @@ export default function GlobeMap() {
     // Convert incidents to GeoJSON Features
     const features = incidents.map(inc => {
         // Handle TomTom geometry formatting (can be single array or array of arrays)
-        let coords = inc.geometry?.coordinates || [];
-        if (coords.length > 0 && typeof coords[0][0] !== 'number') {
-           // If it's a multiline string basically
-           coords = coords.flat();
+        let coords: number[][] = inc.geometry?.coordinates || [];
+        if (coords.length > 0 && typeof (coords[0] as unknown as number[][])[0] !== 'number') {
+           coords = (coords as unknown as number[][][]).flat();
         }
 
         return {

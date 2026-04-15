@@ -1,0 +1,42 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider             = "prisma-client-py"
+  interface            = "asyncio"
+  recursive_type_depth = 5
+}
+
+/// Persisted traffic incident (upserted on every fetch)
+model TrafficIncident {
+  id         String   @id @default(cuid())
+  externalId String   @unique
+  bbox       String
+  delay      Int      @default(0)
+  length     Float    @default(0)
+  fromAddr   String   @default("")
+  toAddr     String   @default("")
+  magnitude  Int      @default(0)
+  description String  @default("")
+  lat        Float    @default(0)
+  lng        Float    @default(0)
+  fetchedAt  DateTime @default(now())
+
+  @@index([bbox])
+  @@index([fetchedAt])
+  @@map("traffic_incidents")
+}
+
+/// Audit log of every /api/traffic request
+model QueryLog {
+  id          String   @id @default(cuid())
+  bbox        String
+  zoom        Float    @default(0)
+  resultCount Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  @@index([createdAt])
+  @@map("query_logs")
+}

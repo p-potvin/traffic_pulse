@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTrafficStore } from '../store/useTrafficStore';
 import { Activity, Clock, Navigation, AlertTriangle } from 'lucide-react';
 

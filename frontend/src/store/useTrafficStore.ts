@@ -40,7 +40,8 @@ export const useTrafficStore = create<TrafficState>((set) => ({
     set({ loading: true, error: null });
     try {
       const bboxStr = `${bbox[0]},${bbox[1]},${bbox[2]},${bbox[3]}`;
-      const res = await fetch(`http://localhost:3001/api/traffic?bbox=${bboxStr}&zoom=${zoom}`);
+      const apiBase = import.meta.env.VITE_API_URL ?? 'http://localhost:8000';
+      const res = await fetch(`${apiBase}/api/traffic?bbox=${bboxStr}&zoom=${zoom}`);
       
       if (!res.ok) {
         throw new Error('Failed to fetch data');
