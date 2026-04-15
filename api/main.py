@@ -50,7 +50,7 @@ db = Prisma()
 @app.on_event("startup")
 async def startup() -> None:
     await db.connect()
-    print("✅ Connected to Prisma Postgres")
+    print("[OK] Connected to Prisma Postgres")
 
 
 @app.on_event("shutdown")
@@ -120,7 +120,7 @@ async def _log_to_db(bbox: str, zoom: float, incidents: list[dict]) -> None:
                 },
             )
     except Exception as exc:
-        print(f"⚠️  DB logging error: {exc}")
+        print(f"[WARN] DB logging error: {exc}")
 
 
 # ─────────────────────────────────────────
