@@ -20,10 +20,10 @@ export default function GlobeMap() {
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
+      style: import.meta.env.VITE_MAPBOX_STYLE,
       center: [-74.0060, 40.7128], // Default to NYC
       zoom: 10,
       pitch: 45
-      // Removed projection: 'globe' to see if it helps
     });
 
     // Add cinematic atmosphere
